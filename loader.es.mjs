@@ -1,0 +1,264 @@
+function K(n, t) {
+  for (var o = 0; o < t.length; o++) {
+    var e = t[o];
+    e.enumerable = e.enumerable || !1, e.configurable = !0, "value" in e && (e.writable = !0), Object.defineProperty(n, e.key, e);
+  }
+}
+function f(n) {
+  return function(t) {
+    if (Array.isArray(t)) return g(t);
+  }(n) || function(t) {
+    if (typeof Symbol < "u" && Symbol.iterator in Object(t)) return Array.from(t);
+  }(n) || function(t, o) {
+    if (t) {
+      if (typeof t == "string") return g(t, o);
+      var e = Object.prototype.toString.call(t).slice(8, -1);
+      if (e === "Object" && t.constructor && (e = t.constructor.name), e === "Map" || e === "Set") return Array.from(t);
+      if (e === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)) return g(t, o);
+    }
+  }(n) || function() {
+    throw new TypeError(`Invalid attempt to spread non-iterable instance.
+In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
+  }();
+}
+function g(n, t) {
+  (t == null || t > n.length) && (t = n.length);
+  for (var o = 0, e = new Array(t); o < t; o++) e[o] = n[o];
+  return e;
+}
+var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
+  function n(e) {
+    var i = e.targetModal, a = e.triggers, r = a === void 0 ? [] : a, c = e.onShow, s = c === void 0 ? function() {
+    } : c, u = e.onClose, h = u === void 0 ? function() {
+    } : u, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, y = e.closeTrigger, I = y === void 0 ? "data-micromodal-close" : y, E = e.openClass, R = E === void 0 ? "is-open" : E, p = e.disableScroll, B = p !== void 0 && p, k = e.disableFocus, x = k !== void 0 && k, M = e.awaitCloseAnimation, N = M !== void 0 && M, C = e.awaitOpenAnimation, F = C !== void 0 && C, L = e.debugMode, D = L !== void 0 && L;
+    (function(_, G) {
+      if (!(_ instanceof G)) throw new TypeError("Cannot call a class as a function");
+    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: D, disableScroll: B, openTrigger: T, closeTrigger: I, openClass: R, onShow: s, onClose: h, awaitCloseAnimation: N, awaitOpenAnimation: F, disableFocus: x }, r.length > 0 && this.registerTriggers.apply(this, f(r)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
+  }
+  var t, o;
+  return t = n, (o = [{ key: "registerTriggers", value: function() {
+    for (var e = this, i = arguments.length, a = new Array(i), r = 0; r < i; r++) a[r] = arguments[r];
+    a.filter(Boolean).forEach(function(c) {
+      c.addEventListener("click", function(s) {
+        return e.showModal(s);
+      });
+    });
+  } }, { key: "showModal", value: function() {
+    var e = this, i = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
+    if (this.activeElement = document.activeElement, this.modal.setAttribute("aria-hidden", "false"), this.modal.classList.add(this.config.openClass), this.scrollBehaviour("disable"), this.addEventListeners(), this.config.awaitOpenAnimation) {
+      var a = function r() {
+        e.modal.removeEventListener("animationend", r, !1), e.setFocusToFirstNode();
+      };
+      this.modal.addEventListener("animationend", a, !1);
+    } else this.setFocusToFirstNode();
+    this.config.onShow(this.modal, this.activeElement, i);
+  } }, { key: "closeModal", value: function() {
+    var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, i = this.modal;
+    if (this.modal.setAttribute("aria-hidden", "true"), this.removeEventListeners(), this.scrollBehaviour("enable"), this.activeElement && this.activeElement.focus && this.activeElement.focus(), this.config.onClose(this.modal, this.activeElement, e), this.config.awaitCloseAnimation) {
+      var a = this.config.openClass;
+      this.modal.addEventListener("animationend", function r() {
+        i.classList.remove(a), i.removeEventListener("animationend", r, !1);
+      }, !1);
+    } else i.classList.remove(this.config.openClass);
+  } }, { key: "closeModalByIdOrElement", value: function(e) {
+    this.modal = typeof e == "string" ? document.getElementById(e) : e, this.modal && this.closeModal();
+  } }, { key: "scrollBehaviour", value: function(e) {
+    if (this.config.disableScroll) {
+      var i = document.querySelector("body");
+      switch (e) {
+        case "enable":
+          Object.assign(i.style, { overflow: "" });
+          break;
+        case "disable":
+          Object.assign(i.style, { overflow: "hidden" });
+      }
+    }
+  } }, { key: "addEventListeners", value: function() {
+    this.modal.addEventListener("touchstart", this.onClick), this.modal.addEventListener("click", this.onClick), document.addEventListener("keydown", this.onKeydown);
+  } }, { key: "removeEventListeners", value: function() {
+    this.modal.removeEventListener("touchstart", this.onClick), this.modal.removeEventListener("click", this.onClick), document.removeEventListener("keydown", this.onKeydown);
+  } }, { key: "onClick", value: function(e) {
+    (e.target.hasAttribute(this.config.closeTrigger) || e.target.parentNode.hasAttribute(this.config.closeTrigger)) && (e.preventDefault(), e.stopPropagation(), this.closeModal(e));
+  } }, { key: "onKeydown", value: function(e) {
+    e.keyCode === 27 && this.closeModal(e), e.keyCode === 9 && this.retainFocus(e);
+  } }, { key: "getFocusableNodes", value: function() {
+    var e = this.modal.querySelectorAll(A);
+    return Array.apply(void 0, f(e));
+  } }, { key: "setFocusToFirstNode", value: function() {
+    var e = this;
+    if (!this.config.disableFocus) {
+      var i = this.getFocusableNodes();
+      if (i.length !== 0) {
+        var a = i.filter(function(r) {
+          return !r.hasAttribute(e.config.closeTrigger);
+        });
+        a.length > 0 && a[0].focus(), a.length === 0 && i[0].focus();
+      }
+    }
+  } }, { key: "retainFocus", value: function(e) {
+    var i = this.getFocusableNodes();
+    if (i.length !== 0) if (i = i.filter(function(r) {
+      return r.offsetParent !== null;
+    }), this.modal.contains(document.activeElement)) {
+      var a = i.indexOf(document.activeElement);
+      e.shiftKey && a === 0 && (i[i.length - 1].focus(), e.preventDefault()), !e.shiftKey && i.length > 0 && a === i.length - 1 && (i[0].focus(), e.preventDefault());
+    } else i[0].focus();
+  } }]) && K(t.prototype, o), n;
+}(), d = null, v = function(n) {
+  if (typeof id == "string" ? !document.getElementById(n) : !n) return console.warn("MicroModal: ❗Seems like you have missed %c'".concat(n, "'"), "background-color: #f8f9fa;color: #50596c;font-weight: bold;", "ID somewhere in your code. Refer example below to resolve it."), console.warn("%cExample:", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", '<div class="modal" id="'.concat(n, '"></div>')), !1;
+}, O = function(n, t) {
+  if (function(e) {
+    e.length <= 0 && (console.warn("MicroModal: ❗Please specify at least one %c'micromodal-trigger'", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", "data attribute."), console.warn("%cExample:", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", '<a href="#" data-micromodal-trigger="my-modal"></a>'));
+  }(n), !t) return !0;
+  for (var o in t) v(o);
+  return !0;
+}, { init: function(n) {
+  var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = f(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(r, c) {
+    var s = [];
+    return r.forEach(function(u) {
+      var h = u.attributes[c].value;
+      s[h] === void 0 && (s[h] = []), s[h].push(u);
+    }), s;
+  }(o, t.openTrigger);
+  if (t.debugMode !== !0 || O(o, e) !== !1) for (var i in e) {
+    var a = e[i];
+    t.targetModal = i, t.triggers = f(a), d = new m(t);
+  }
+}, show: function(n, t) {
+  var o = t || {};
+  o.targetModal = n, o.debugMode === !0 && v(n) === !1 || (d && d.removeEventListeners(), (d = new m(o)).showModal());
+}, close: function(n) {
+  n ? d.closeModalByIdOrElement(n) : d.closeModal();
+} });
+typeof window < "u" && (window.MicroModal = S);
+const l = {
+  OPEN_MODAL: "bflex:open-search-modal",
+  SEARCH: "bflex:search-bar:search",
+  BOOKING_READY: "bflex:booking-widget:ready",
+  BOOKING_REMOVED: "bflex:booking-widget:removed"
+}, b = {
+  TRIGGER: "[data-open-bflex-widget]"
+}, j = `
+  <div id="booking-widget" aria-hidden="true" class="micromodal">
+    <div tabindex="-1" class="micromodal__overlay" data-micromodal-close>
+      <div role="dialog" aria-modal="true" aria-labelledby="booking-widget-title" class="micromodal__container">
+        <div id="booking-widget-content">
+          <div style="position: sticky; top: 0; z-index: 999">
+            <bflex-search-bar-widget></bflex-search-bar-widget>                
+          </div>
+          <bflex-booking-widget></bflex-booking-widget>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+function P(n) {
+  ((e = document) => {
+    e.querySelectorAll(b.TRIGGER).forEach(n);
+  })(), new MutationObserver((e) => {
+    e.forEach(({ addedNodes: i }) => {
+      i.forEach((a) => {
+        var r;
+        a.nodeType === Node.ELEMENT_NODE && (a.matches(b.TRIGGER) && n(a), (r = a.querySelectorAll) == null || r.call(a, b.TRIGGER).forEach(n));
+      });
+    });
+  }).observe(document.body, {
+    childList: !0,
+    subtree: !0
+  });
+}
+class W {
+  constructor({ scripts: t, css: o }) {
+    this.isBookingWidgetReady = !1, this.isModalShown = !1, this.widgetContainerId = "booking-widget-101", this.scripts = [], this.css = [], t && (t != null && t.length) && (this.scripts = t), o && (o != null && o.length) && (this.css = o), this.loadScripts(), this.loadCss(), this.observeTriggers(), this.registerEventListeners();
+  }
+  loadScripts() {
+    const t = (o) => {
+      const e = document.createElement("script");
+      e.type = "text/javascript", e.src = o, document.body.appendChild(e);
+    };
+    this.scripts.map((o) => t(o));
+  }
+  loadCss() {
+    const t = (o) => {
+      const e = document.createElement("link");
+      e.href = o, document.head.appendChild(e);
+    };
+    this.css.map((o) => t(o));
+  }
+  observeTriggers() {
+    P((t) => {
+      t.addEventListener("click", () => {
+        if (!this.isBookingWidgetReady) {
+          const o = this.getPayloadFromElement(t);
+          console.log("[ModalLauncher] Auto-opening with payload:", o), window.dispatchEvent(
+            new CustomEvent(l.OPEN_MODAL, {
+              detail: {
+                payload: o,
+                autoSearch: !0
+              }
+            })
+          );
+        }
+      });
+    });
+  }
+  getPayloadFromElement(t) {
+    const { start: o, end: e } = t.dataset;
+    return o && e ? { start: o, end: e } : {};
+  }
+  registerEventListeners() {
+    window.addEventListener(l.BOOKING_READY, () => {
+      this.isBookingWidgetReady = !0, console.info("[BookingWidget] Ready");
+    }), window.addEventListener(l.BOOKING_REMOVED, () => {
+      this.isBookingWidgetReady = !1, console.info("[BookingWidget] Removed");
+    }), window.addEventListener(l.SEARCH, (t) => {
+      !this.isBookingWidgetReady && !this.isModalShown && (console.info("[ModalLauncher] Auto-opening with payload:", t.detail), window.dispatchEvent(
+        new CustomEvent(l.OPEN_MODAL, {
+          detail: {
+            payload: t.detail,
+            autoSearch: !0
+          }
+        })
+      ));
+    }), window.addEventListener(l.OPEN_MODAL, (t) => {
+      this.insertModal(), this.showModal(t.detail);
+    });
+  }
+  insertModal() {
+    if (document.getElementById(this.widgetContainerId)) return;
+    const t = document.createElement("div");
+    t.id = this.widgetContainerId, t.innerHTML = j, document.body.appendChild(t);
+  }
+  showModal({ payload: t, autoSearch: o }) {
+    setTimeout(() => {
+      S.show("booking-widget", {
+        onShow: (e) => {
+          console.info(`[Modal: ${e.id}] is shown`), this.isModalShown = !0;
+        },
+        onClose: (e) => {
+          var i;
+          console.info(`[Modal: ${e.id}] is hidden`), (i = document.getElementById(this.widgetContainerId)) == null || i.remove(), this.isModalShown = !1;
+        },
+        openTrigger: "data-booking-widget-open",
+        openClass: "is-open",
+        disableScroll: !0,
+        disableFocus: !1,
+        awaitOpenAnimation: !1,
+        awaitCloseAnimation: !1,
+        debugMode: !0
+      });
+    }, 0), o && t && setTimeout(() => {
+      const e = document.getElementById(this.widgetContainerId);
+      e == null || e.dispatchEvent(
+        new CustomEvent(l.SEARCH, {
+          detail: t,
+          bubbles: !0,
+          composed: !0
+        })
+      );
+    }, 0);
+  }
+}
+export {
+  W as SearchWidgetController
+};
