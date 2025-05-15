@@ -28,26 +28,26 @@ function g(n, t) {
 }
 var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
   function n(e) {
-    var i = e.targetModal, a = e.triggers, r = a === void 0 ? [] : a, c = e.onShow, s = c === void 0 ? function() {
+    var i = e.targetModal, a = e.triggers, s = a === void 0 ? [] : a, c = e.onShow, r = c === void 0 ? function() {
     } : c, u = e.onClose, h = u === void 0 ? function() {
-    } : u, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, y = e.closeTrigger, I = y === void 0 ? "data-micromodal-close" : y, E = e.openClass, R = E === void 0 ? "is-open" : E, p = e.disableScroll, B = p !== void 0 && p, k = e.disableFocus, x = k !== void 0 && k, M = e.awaitCloseAnimation, N = M !== void 0 && M, C = e.awaitOpenAnimation, F = C !== void 0 && C, L = e.debugMode, D = L !== void 0 && L;
-    (function(_, G) {
-      if (!(_ instanceof G)) throw new TypeError("Cannot call a class as a function");
-    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: D, disableScroll: B, openTrigger: T, closeTrigger: I, openClass: R, onShow: s, onClose: h, awaitCloseAnimation: N, awaitOpenAnimation: F, disableFocus: x }, r.length > 0 && this.registerTriggers.apply(this, f(r)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
+    } : u, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, E = e.closeTrigger, I = E === void 0 ? "data-micromodal-close" : E, y = e.openClass, B = y === void 0 ? "is-open" : y, p = e.disableScroll, R = p !== void 0 && p, k = e.disableFocus, x = k !== void 0 && k, M = e.awaitCloseAnimation, _ = M !== void 0 && M, C = e.awaitOpenAnimation, N = C !== void 0 && C, L = e.debugMode, F = L !== void 0 && L;
+    (function(D, G) {
+      if (!(D instanceof G)) throw new TypeError("Cannot call a class as a function");
+    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: F, disableScroll: R, openTrigger: T, closeTrigger: I, openClass: B, onShow: r, onClose: h, awaitCloseAnimation: _, awaitOpenAnimation: N, disableFocus: x }, s.length > 0 && this.registerTriggers.apply(this, f(s)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
   }
   var t, o;
   return t = n, (o = [{ key: "registerTriggers", value: function() {
-    for (var e = this, i = arguments.length, a = new Array(i), r = 0; r < i; r++) a[r] = arguments[r];
+    for (var e = this, i = arguments.length, a = new Array(i), s = 0; s < i; s++) a[s] = arguments[s];
     a.filter(Boolean).forEach(function(c) {
-      c.addEventListener("click", function(s) {
-        return e.showModal(s);
+      c.addEventListener("click", function(r) {
+        return e.showModal(r);
       });
     });
   } }, { key: "showModal", value: function() {
     var e = this, i = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
     if (this.activeElement = document.activeElement, this.modal.setAttribute("aria-hidden", "false"), this.modal.classList.add(this.config.openClass), this.scrollBehaviour("disable"), this.addEventListeners(), this.config.awaitOpenAnimation) {
-      var a = function r() {
-        e.modal.removeEventListener("animationend", r, !1), e.setFocusToFirstNode();
+      var a = function s() {
+        e.modal.removeEventListener("animationend", s, !1), e.setFocusToFirstNode();
       };
       this.modal.addEventListener("animationend", a, !1);
     } else this.setFocusToFirstNode();
@@ -56,8 +56,8 @@ var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
     var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, i = this.modal;
     if (this.modal.setAttribute("aria-hidden", "true"), this.removeEventListeners(), this.scrollBehaviour("enable"), this.activeElement && this.activeElement.focus && this.activeElement.focus(), this.config.onClose(this.modal, this.activeElement, e), this.config.awaitCloseAnimation) {
       var a = this.config.openClass;
-      this.modal.addEventListener("animationend", function r() {
-        i.classList.remove(a), i.removeEventListener("animationend", r, !1);
+      this.modal.addEventListener("animationend", function s() {
+        i.classList.remove(a), i.removeEventListener("animationend", s, !1);
       }, !1);
     } else i.classList.remove(this.config.openClass);
   } }, { key: "closeModalByIdOrElement", value: function(e) {
@@ -89,16 +89,16 @@ var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
     if (!this.config.disableFocus) {
       var i = this.getFocusableNodes();
       if (i.length !== 0) {
-        var a = i.filter(function(r) {
-          return !r.hasAttribute(e.config.closeTrigger);
+        var a = i.filter(function(s) {
+          return !s.hasAttribute(e.config.closeTrigger);
         });
         a.length > 0 && a[0].focus(), a.length === 0 && i[0].focus();
       }
     }
   } }, { key: "retainFocus", value: function(e) {
     var i = this.getFocusableNodes();
-    if (i.length !== 0) if (i = i.filter(function(r) {
-      return r.offsetParent !== null;
+    if (i.length !== 0) if (i = i.filter(function(s) {
+      return s.offsetParent !== null;
     }), this.modal.contains(document.activeElement)) {
       var a = i.indexOf(document.activeElement);
       e.shiftKey && a === 0 && (i[i.length - 1].focus(), e.preventDefault()), !e.shiftKey && i.length > 0 && a === i.length - 1 && (i[0].focus(), e.preventDefault());
@@ -113,12 +113,12 @@ var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
   for (var o in t) v(o);
   return !0;
 }, { init: function(n) {
-  var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = f(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(r, c) {
-    var s = [];
-    return r.forEach(function(u) {
+  var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = f(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(s, c) {
+    var r = [];
+    return s.forEach(function(u) {
       var h = u.attributes[c].value;
-      s[h] === void 0 && (s[h] = []), s[h].push(u);
-    }), s;
+      r[h] === void 0 && (r[h] = []), r[h].push(u);
+    }), r;
   }(o, t.openTrigger);
   if (t.debugMode !== !0 || O(o, e) !== !1) for (var i in e) {
     var a = e[i];
@@ -140,10 +140,13 @@ const l = {
   TRIGGER: "[data-open-bflex-widget]"
 }, j = `
   <div id="booking-widget" aria-hidden="true" class="micromodal">
-    <div tabindex="-1" class="micromodal__overlay" data-micromodal-close>
+    <div tabindex="-1" class="micromodal__overlay">
       <div role="dialog" aria-modal="true" aria-labelledby="booking-widget-title" class="micromodal__container">
-        <div id="booking-widget-content">
-          <div style="position: sticky; top: 0; z-index: 999">
+        <header class="modal__header">
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close=""></button>
+        </header>
+        <div id="booking-widget-content" class="modal__content">
+          <div class="search-bar-wrapper">
             <bflex-search-bar-widget></bflex-search-bar-widget>                
           </div>
           <bflex-booking-widget></bflex-booking-widget>
@@ -158,8 +161,8 @@ function P(n) {
   })(), new MutationObserver((e) => {
     e.forEach(({ addedNodes: i }) => {
       i.forEach((a) => {
-        var r;
-        a.nodeType === Node.ELEMENT_NODE && (a.matches(b.TRIGGER) && n(a), (r = a.querySelectorAll) == null || r.call(a, b.TRIGGER).forEach(n));
+        var s;
+        a.nodeType === Node.ELEMENT_NODE && (a.matches(b.TRIGGER) && n(a), (s = a.querySelectorAll) == null || s.call(a, b.TRIGGER).forEach(n));
       });
     });
   }).observe(document.body, {
@@ -229,15 +232,19 @@ class W {
     const t = document.createElement("div");
     t.id = this.widgetContainerId, t.innerHTML = j, document.body.appendChild(t);
   }
+  actionUpdate({ detail: t }) {
+    const o = t.action.replaceAll("_", "-"), e = document.getElementById(this.widgetContainerId);
+    e.classList.forEach((i) => e.classList.remove(i)), e.classList.add(o);
+  }
   showModal({ payload: t, autoSearch: o }) {
     setTimeout(() => {
       S.show("booking-widget", {
         onShow: (e) => {
-          console.info(`[Modal: ${e.id}] is shown`), this.isModalShown = !0;
+          console.info(`[Modal: ${e.id}] is shown`), window.addEventListener("bflex:booking-widget:action", this.actionUpdate.bind(this)), this.isModalShown = !0;
         },
         onClose: (e) => {
           var i;
-          console.info(`[Modal: ${e.id}] is hidden`), (i = document.getElementById(this.widgetContainerId)) == null || i.remove(), this.isModalShown = !1;
+          console.info(`[Modal: ${e.id}] is hidden`), (i = document.getElementById(this.widgetContainerId)) == null || i.remove(), window.removeEventListener("bflex:booking-widget:action", this.actionUpdate.bind(this)), this.isModalShown = !1;
         },
         openTrigger: "data-booking-widget-open",
         openClass: "is-open",
