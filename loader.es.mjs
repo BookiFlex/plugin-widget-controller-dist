@@ -4,24 +4,24 @@ function K(n, t) {
     e.enumerable = e.enumerable || !1, e.configurable = !0, "value" in e && (e.writable = !0), Object.defineProperty(n, e.key, e);
   }
 }
-function f(n) {
+function g(n) {
   return function(t) {
-    if (Array.isArray(t)) return g(t);
+    if (Array.isArray(t)) return f(t);
   }(n) || function(t) {
     if (typeof Symbol < "u" && Symbol.iterator in Object(t)) return Array.from(t);
   }(n) || function(t, o) {
     if (t) {
-      if (typeof t == "string") return g(t, o);
+      if (typeof t == "string") return f(t, o);
       var e = Object.prototype.toString.call(t).slice(8, -1);
       if (e === "Object" && t.constructor && (e = t.constructor.name), e === "Map" || e === "Set") return Array.from(t);
-      if (e === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)) return g(t, o);
+      if (e === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)) return f(t, o);
     }
   }(n) || function() {
     throw new TypeError(`Invalid attempt to spread non-iterable instance.
 In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
   }();
 }
-function g(n, t) {
+function f(n, t) {
   (t == null || t > n.length) && (t = n.length);
   for (var o = 0, e = new Array(t); o < t; o++) e[o] = n[o];
   return e;
@@ -29,11 +29,11 @@ function g(n, t) {
 var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
   function n(e) {
     var i = e.targetModal, a = e.triggers, s = a === void 0 ? [] : a, c = e.onShow, r = c === void 0 ? function() {
-    } : c, u = e.onClose, h = u === void 0 ? function() {
-    } : u, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, E = e.closeTrigger, I = E === void 0 ? "data-micromodal-close" : E, y = e.openClass, B = y === void 0 ? "is-open" : y, p = e.disableScroll, R = p !== void 0 && p, k = e.disableFocus, x = k !== void 0 && k, M = e.awaitCloseAnimation, _ = M !== void 0 && M, C = e.awaitOpenAnimation, N = C !== void 0 && C, L = e.debugMode, F = L !== void 0 && L;
+    } : c, h = e.onClose, u = h === void 0 ? function() {
+    } : h, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, E = e.closeTrigger, I = E === void 0 ? "data-micromodal-close" : E, p = e.openClass, x = p === void 0 ? "is-open" : p, y = e.disableScroll, B = y !== void 0 && y, k = e.disableFocus, R = k !== void 0 && k, M = e.awaitCloseAnimation, _ = M !== void 0 && M, L = e.awaitOpenAnimation, N = L !== void 0 && L, C = e.debugMode, F = C !== void 0 && C;
     (function(D, G) {
       if (!(D instanceof G)) throw new TypeError("Cannot call a class as a function");
-    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: F, disableScroll: R, openTrigger: T, closeTrigger: I, openClass: B, onShow: r, onClose: h, awaitCloseAnimation: _, awaitOpenAnimation: N, disableFocus: x }, s.length > 0 && this.registerTriggers.apply(this, f(s)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
+    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: F, disableScroll: B, openTrigger: T, closeTrigger: I, openClass: x, onShow: r, onClose: u, awaitCloseAnimation: _, awaitOpenAnimation: N, disableFocus: R }, s.length > 0 && this.registerTriggers.apply(this, g(s)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
   }
   var t, o;
   return t = n, (o = [{ key: "registerTriggers", value: function() {
@@ -83,7 +83,7 @@ var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
     e.keyCode === 27 && this.closeModal(e), e.keyCode === 9 && this.retainFocus(e);
   } }, { key: "getFocusableNodes", value: function() {
     var e = this.modal.querySelectorAll(A);
-    return Array.apply(void 0, f(e));
+    return Array.apply(void 0, g(e));
   } }, { key: "setFocusToFirstNode", value: function() {
     var e = this;
     if (!this.config.disableFocus) {
@@ -113,16 +113,16 @@ var A, m, d, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
   for (var o in t) v(o);
   return !0;
 }, { init: function(n) {
-  var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = f(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(s, c) {
+  var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = g(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(s, c) {
     var r = [];
-    return s.forEach(function(u) {
-      var h = u.attributes[c].value;
-      r[h] === void 0 && (r[h] = []), r[h].push(u);
+    return s.forEach(function(h) {
+      var u = h.attributes[c].value;
+      r[u] === void 0 && (r[u] = []), r[u].push(h);
     }), r;
   }(o, t.openTrigger);
   if (t.debugMode !== !0 || O(o, e) !== !1) for (var i in e) {
     var a = e[i];
-    t.targetModal = i, t.triggers = f(a), d = new m(t);
+    t.targetModal = i, t.triggers = g(a), d = new m(t);
   }
 }, show: function(n, t) {
   var o = t || {};
@@ -138,10 +138,10 @@ const l = {
   BOOKING_REMOVED: "bflex:booking-widget:removed"
 }, b = {
   TRIGGER: "[data-open-bflex-widget]"
-}, j = `
-  <div id="booking-widget" aria-hidden="true" class="micromodal">
-    <div tabindex="-1" class="micromodal__overlay">
-      <div role="dialog" aria-modal="true" aria-labelledby="booking-widget-title" class="micromodal__container">
+}, P = `
+  <div id="booking-widget" aria-hidden="true" class="bflex-widget">
+    <div tabindex="-1" class="bflex-widget__overlay">
+      <div role="dialog" aria-modal="true" aria-labelledby="booking-widget-title" class="bflex-widget__container">
         <header class="modal__header">
             <button class="modal__close" aria-label="Close modal" data-micromodal-close=""></button>
         </header>
@@ -155,7 +155,7 @@ const l = {
     </div>
   </div>
 `;
-function P(n) {
+function j(n) {
   ((e = document) => {
     e.querySelectorAll(b.TRIGGER).forEach(n);
   })(), new MutationObserver((e) => {
@@ -170,9 +170,9 @@ function P(n) {
     subtree: !0
   });
 }
-class W {
+class H {
   constructor({ scripts: t, css: o }) {
-    this.isBookingWidgetReady = !1, this.isModalShown = !1, this.widgetContainerId = "booking-widget-101", this.scripts = [], this.css = [], t && (t != null && t.length) && (this.scripts = t), o && (o != null && o.length) && (this.css = o), this.loadScripts(), this.loadCss(), this.observeTriggers(), this.registerEventListeners();
+    this.isBookingWidgetReady = !1, this.isModalShown = !1, this.widgetContainerId = "booking-widget-101", this.scripts = [], this.css = [], t && (t != null && t.length) && (this.scripts = t), o && (o != null && o.length) && (this.css = o), this.loadScripts(), this.loadCss(), this.observeTriggers(), this.registerEventListeners(), this.updateModalHeight();
   }
   loadScripts() {
     const t = (o) => {
@@ -184,12 +184,12 @@ class W {
   loadCss() {
     const t = (o) => {
       const e = document.createElement("link");
-      e.href = o, document.head.appendChild(e);
+      e.href = o, e.rel = "stylesheet", document.head.appendChild(e);
     };
     this.css.map((o) => t(o));
   }
   observeTriggers() {
-    P((t) => {
+    j((t) => {
       t.addEventListener("click", () => {
         if (!this.isBookingWidgetReady) {
           const o = this.getPayloadFromElement(t);
@@ -225,12 +225,12 @@ class W {
       ));
     }), window.addEventListener(l.OPEN_MODAL, (t) => {
       this.insertModal(), this.showModal(t.detail);
-    });
+    }), window.addEventListener("resize", this.updateModalHeight), window.addEventListener("orientationchange", this.updateModalHeight);
   }
   insertModal() {
     if (document.getElementById(this.widgetContainerId)) return;
     const t = document.createElement("div");
-    t.id = this.widgetContainerId, t.innerHTML = j, document.body.appendChild(t);
+    t.id = this.widgetContainerId, t.innerHTML = P, document.body.appendChild(t);
   }
   actionUpdate({ detail: t }) {
     const o = t.action.replaceAll("_", "-"), e = document.getElementById(this.widgetContainerId);
@@ -265,7 +265,11 @@ class W {
       );
     }, 0);
   }
+  updateModalHeight() {
+    const t = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--bflex-vh", `${t}px`);
+  }
 }
 export {
-  W as SearchWidgetController
+  H as SearchWidgetController
 };
