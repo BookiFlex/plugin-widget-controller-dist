@@ -29,11 +29,11 @@ function f(n, t) {
 var A, m, l, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
   function n(e) {
     var i = e.targetModal, a = e.triggers, s = a === void 0 ? [] : a, c = e.onShow, r = c === void 0 ? function() {
-    } : c, h = e.onClose, u = h === void 0 ? function() {
-    } : h, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, E = e.closeTrigger, I = E === void 0 ? "data-micromodal-close" : E, p = e.openClass, x = p === void 0 ? "is-open" : p, y = e.disableScroll, R = y !== void 0 && y, k = e.disableFocus, B = k !== void 0 && k, M = e.awaitCloseAnimation, _ = M !== void 0 && M, C = e.awaitOpenAnimation, N = C !== void 0 && C, L = e.debugMode, F = L !== void 0 && L;
+    } : c, u = e.onClose, h = u === void 0 ? function() {
+    } : u, w = e.openTrigger, T = w === void 0 ? "data-micromodal-trigger" : w, E = e.closeTrigger, I = E === void 0 ? "data-micromodal-close" : E, p = e.openClass, x = p === void 0 ? "is-open" : p, y = e.disableScroll, R = y !== void 0 && y, k = e.disableFocus, B = k !== void 0 && k, M = e.awaitCloseAnimation, _ = M !== void 0 && M, C = e.awaitOpenAnimation, N = C !== void 0 && C, L = e.debugMode, F = L !== void 0 && L;
     (function(D, G) {
       if (!(D instanceof G)) throw new TypeError("Cannot call a class as a function");
-    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: F, disableScroll: R, openTrigger: T, closeTrigger: I, openClass: x, onShow: r, onClose: u, awaitCloseAnimation: _, awaitOpenAnimation: N, disableFocus: B }, s.length > 0 && this.registerTriggers.apply(this, g(s)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
+    })(this, n), this.modal = typeof i == "string" ? document.getElementById(i) : i, this.config = { debugMode: F, disableScroll: R, openTrigger: T, closeTrigger: I, openClass: x, onShow: r, onClose: h, awaitCloseAnimation: _, awaitOpenAnimation: N, disableFocus: B }, s.length > 0 && this.registerTriggers.apply(this, g(s)), this.onClick = this.onClick.bind(this), this.onKeydown = this.onKeydown.bind(this);
   }
   var t, o;
   return t = n, (o = [{ key: "registerTriggers", value: function() {
@@ -115,9 +115,9 @@ var A, m, l, v, O, S = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
 }, { init: function(n) {
   var t = Object.assign({}, { openTrigger: "data-micromodal-trigger" }, n), o = g(document.querySelectorAll("[".concat(t.openTrigger, "]"))), e = function(s, c) {
     var r = [];
-    return s.forEach(function(h) {
-      var u = h.attributes[c].value;
-      r[u] === void 0 && (r[u] = []), r[u].push(h);
+    return s.forEach(function(u) {
+      var h = u.attributes[c].value;
+      r[h] === void 0 && (r[h] = []), r[h].push(u);
     }), r;
   }(o, t.openTrigger);
   if (t.debugMode !== !0 || O(o, e) !== !1) for (var i in e) {
@@ -224,7 +224,11 @@ class j {
         })
       ));
     }), window.addEventListener("booking-click", (t) => {
-      window.dispatchEvent(new CustomEvent(d.SEARCH, {}));
+      window.dispatchEvent(new CustomEvent(d.SEARCH, {
+        detail: {
+          autoSearch: !0
+        }
+      }));
     }), window.addEventListener(d.OPEN_MODAL, (t) => {
       this.insertModal(), this.showModal(t.detail);
     }), window.addEventListener("resize", this.updateModalHeight), window.addEventListener("orientationchange", this.updateModalHeight);
