@@ -26,7 +26,7 @@ function f(n, t) {
   for (var o = 0, e = new Array(t); o < t; o++) e[o] = n[o];
   return e;
 }
-var A, m, l, v, S, T = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
+var A, m, l, v, O, T = (A = ["a[href]", "area[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "button:not([disabled]):not([aria-hidden])", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'], m = function() {
   function n(e) {
     var i = e.targetModal, a = e.triggers, s = a === void 0 ? [] : a, c = e.onShow, r = c === void 0 ? function() {
     } : c, u = e.onClose, h = u === void 0 ? function() {
@@ -106,7 +106,7 @@ var A, m, l, v, S, T = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
   } }]) && K(t.prototype, o), n;
 }(), l = null, v = function(n) {
   if (typeof id == "string" ? !document.getElementById(n) : !n) return console.warn("MicroModal: ❗Seems like you have missed %c'".concat(n, "'"), "background-color: #f8f9fa;color: #50596c;font-weight: bold;", "ID somewhere in your code. Refer example below to resolve it."), console.warn("%cExample:", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", '<div class="modal" id="'.concat(n, '"></div>')), !1;
-}, S = function(n, t) {
+}, O = function(n, t) {
   if (function(e) {
     e.length <= 0 && (console.warn("MicroModal: ❗Please specify at least one %c'micromodal-trigger'", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", "data attribute."), console.warn("%cExample:", "background-color: #f8f9fa;color: #50596c;font-weight: bold;", '<a href="#" data-micromodal-trigger="my-modal"></a>'));
   }(n), !t) return !0;
@@ -120,7 +120,7 @@ var A, m, l, v, S, T = (A = ["a[href]", "area[href]", 'input:not([disabled]):not
       r[h] === void 0 && (r[h] = []), r[h].push(u);
     }), r;
   }(o, t.openTrigger);
-  if (t.debugMode !== !0 || S(o, e) !== !1) for (var i in e) {
+  if (t.debugMode !== !0 || O(o, e) !== !1) for (var i in e) {
     var a = e[i];
     t.targetModal = i, t.triggers = g(a), l = new m(t);
   }
@@ -170,7 +170,7 @@ function j(n) {
     subtree: !0
   });
 }
-const O = (n) => {
+const S = (n) => {
   const t = /* @__PURE__ */ new Date();
   return t.setDate(t.getDate() + n), t.toISOString().split("T")[0];
 };
@@ -231,12 +231,9 @@ class W {
       window.dispatchEvent(
         new CustomEvent(d.SEARCH, {
           detail: {
-            payload: {
-              start: O(7),
-              end: O(8),
-              promoCode: ""
-            },
-            autoSearch: !0
+            start: S(7),
+            end: S(8),
+            promoCode: ""
           }
         })
       );
